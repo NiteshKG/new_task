@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>Crud Application - Create user</title>
+    
+<body>
+<form name="createuser" method="post" action="<?php echo base_url().'user/edit/'.$user['id'];; ?>">
+        <div class="container">
+           
+        <div class="form-group col-md-6">
+     <label>Employee's Id </label> : <input type="int" name="id"    value="<?php echo set_value('id',$user['id']);?>">
+     <label for=""><?php echo form_error('id')? form_error('id') : '' ;?></label>
+    </div>
+
+    <div class="form-group col-md-6 ">
+     <label>Employee's name </label> : <input type="text" name="name"   value="<?php echo set_value('name',$user['name']);?>">
+     <label for=""><?php echo form_error('name')? form_error('name') : '' ;?></label>
+    </div>
+    <div class="form-group col-md-6">
+     <label> Task </label> :       <input type="text" name="task"    value="<?php echo set_value('task',$user['task']);?>">
+     <label for=""><?php echo form_error('task')? form_error('task') : '' ;?></label>
+     </div>
+    <div class="form-group col-md-6">
+    <label>Due date   </label> :  <input type="date" name="due_date"  value="<?php echo set_value('due_date',$user['due_date']);?>">
+   <label for=""><?php echo form_error('due_date')? form_error('due_date') : '' ;?></label>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Task description :</label>
+        <div><textarea id="task_description" name="task_description"  value="<?php echo set_value('task_description',$user['task_description']);?>" rows="4" cols="50">
+
+</textarea>
+</div>
+        </div>
+    <div class="form-group col-md-6">
+    <button class="btn btn-primary">Submit</button>
+    </div>
+        <br>
+        <div class="form-group">
+        <a href="<?php echo base_url().'user/index' ?>" class="btn btn-primary">Cancel</a>
+        </div>
+        </div>
+    </form>
+    <hr>
+    <hr>
+    <h3>Employ task list</h3>
+    
+    <hr>
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-stripped">
+               <tr>
+                <th>Employee ID</th>
+                <th>Task</th>
+                <th>Due date</th>
+                <th>Task Status</th>
+                <th>Edit Task </th>
+                <th>Delete Task </th>
+                <th>Task description</th>
+               </tr>
+               <?php if(!empty($users)){ foreach($users as $user ){ ?>
+                <tr>
+                    <td><?php echo $user['id'] ?></td>
+                    <td><?php echo $user['task'] ?></td>
+                    <td><?php echo $user['date'] ?></td>
+                    <td><?php echo "pending"; ?></td>
+                    <td>
+                        <a href="<?php echo base_url().'user/edit/'.$user['id'] ?>" class="btn btn-primary">Edit Task</a>
+                        </td>
+                        <td>
+                        <a href="<?php echo base_url().'user/delete/'.$user['id'] ?>" class="btn btn-danger">Delete</a>
+                    </td>
+                    <td>
+                    <a href="<?php echo base_url().'user/description/'.$user['id'] ?>" class="btn btn-primary">Details</a>
+                        </td>
+                        <hr>
+                   
+                </tr>
+                <?php }} else { ?>
+                    <tr>
+                        <td colspan="5">Records not found</td>
+                    </tr>
+                    <?php } ?>
+            </table>
+
+        </div>
+
+    </div>
+</body>
+</html>
